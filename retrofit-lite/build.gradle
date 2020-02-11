@@ -1,9 +1,18 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'aslam'
+    repoName = 'android'
+    groupId = 'com.aslam'
+    artifactId = 'retrofit-lite'
+    publishVersion = '1.0.1'
+    desc = 'Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit'
+    website = 'https://github.com/aslamanver/retrofit-lite'
+}
 
 android {
     compileSdkVersion 29
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 29
