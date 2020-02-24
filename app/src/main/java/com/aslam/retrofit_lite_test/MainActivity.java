@@ -171,6 +171,9 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
         else if (arrayAdapter.getItem(position).contains("500")) {
 
             APITask.from(this).sendGET(500, APIClient.API_URL + "/get", null, null);
+
+            binding.txtLog.setText(arrayAdapter.getItem(position) + "\n" + "Check the logs for response");
+            binding.spinnerData.setEnabled(true);
         }
         // Nothing
         else {
