@@ -35,7 +35,7 @@ public class APIClient {
     public static String API_URL = "https://postman-echo.com";
     private static Retrofit retrofit = null;
 
-    public static Retrofit getClient(Context context, Builder builder) {
+    public static Retrofit getClient(Context context, ConfigBuilder builder) {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -46,7 +46,7 @@ public class APIClient {
         return retrofit;
     }
 
-    public static OkHttpClient getOkHttpClient(Context context, final Builder builder) {
+    public static OkHttpClient getOkHttpClient(Context context, final ConfigBuilder builder) {
 
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -114,7 +114,7 @@ public class APIClient {
         requestBuilder.header("retrofit-lite-version", BuildConfig.VERSION_NAME);
     }
 
-    public static class Builder {
+    public static class ConfigBuilder {
 
         public interface HostnameVerifier {
             boolean onVerify(String hostname, SSLSession session);
@@ -129,12 +129,12 @@ public class APIClient {
             }
         };
 
-        public Builder setTimeout(int millis) {
+        public ConfigBuilder setTimeout(int millis) {
             this.TIMEOUT_MILLIS = millis;
             return this;
         }
 
-        public Builder setHostnameVerifier(HostnameVerifier hostnameVerifier) {
+        public ConfigBuilder setHostnameVerifier(HostnameVerifier hostnameVerifier) {
             this.hostnameVerifier = hostnameVerifier;
             return this;
         }

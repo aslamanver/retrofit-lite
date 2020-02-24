@@ -25,16 +25,16 @@ public class APITask {
     private Retrofit retrofit;
     private APIInterface apiInterface;
 
-    private APITask(Context context, APIClient.Builder builder) {
+    private APITask(Context context, APIClient.ConfigBuilder builder) {
         this.retrofit = APIClient.getClient(context, builder);
         this.apiInterface = retrofit.create(APIInterface.class);
     }
 
     public static APITask from(Context context) {
-        return new APITask(context, new APIClient.Builder());
+        return new APITask(context, new APIClient.ConfigBuilder());
     }
 
-    public static APITask from(Context context, APIClient.Builder builder) {
+    public static APITask from(Context context, APIClient.ConfigBuilder builder) {
         return new APITask(context, builder);
     }
 

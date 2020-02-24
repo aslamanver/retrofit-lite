@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
         // "301 - TIMEOUT"
         else if (arrayAdapter.getItem(position).contains("301")) {
 
-            APIClient.Builder clientBuilder = new APIClient.Builder()
+            APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
                     .setTimeout(3000);
 
             APITask.from(this, clientBuilder).sendGET(301, APIClient.API_URL + "/delay/5", null, this);
@@ -156,8 +156,8 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
         // "302 - Host Verification"
         else if (arrayAdapter.getItem(position).contains("302")) {
 
-            APIClient.Builder clientBuilder = new APIClient.Builder()
-                    .setHostnameVerifier(new APIClient.Builder.HostnameVerifier() {
+            APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
+                    .setHostnameVerifier(new APIClient.ConfigBuilder.HostnameVerifier() {
                         @Override
                         public boolean onVerify(String hostname, SSLSession session) {
                             return false;
