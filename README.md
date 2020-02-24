@@ -51,15 +51,21 @@ void onFailed(int pid, Exception ex);
 
 <hr>
 
-### Advance usage
+### Advanced usage
 Implement the `APITask.Listener` with the activity class or you can directly pass into the method.
 
 ##### 1. GET Request Data
+
+Simple GET request with parameters
+
 ```java
 APITask.from(this).sendGET(101, APIClient.API_URL + "/get?leopard=animal", null, this);
 ```
 
 ##### 2. GET Request Headers
+
+Simple GET request with request headers
+
 ```java
 Map<String, String> headers = new HashMap<>();
 headers.put("leopard", "animal");
@@ -68,26 +74,41 @@ APITask.from(this).sendGET(102, APIClient.API_URL + "/headers", headers, this);
 ```
 
 ##### 3. GET Response Headers
+
+Simple test of response headers
+
 ```java
 APITask.from(this).sendGET(103, APIClient.API_URL + "/response-headers?leopard=animal", null, this);
 ```
 
 ##### 4. GET Response Status Code
+
+400 Status code
+
 ```java
 APITask.from(this).sendGET(104, APIClient.API_URL + "/status/400", null, this);
 ```
 
 ##### 5. POST Raw Text
+
+Plain text on POST method
+
 ```java
 APITask.from(this).sendPOST(201, APIClient.API_URL + "/post", "Leopard is an animal", null, this);
 ```
 
 ##### 6. POST JSON Text
+
+JSON text on POST method
+
 ```java
 APITask.from(this).sendPOST(201, APIClient.API_URL + "/post", "{ \"leopard\" : \"animal\" }", null, this);
 ```
 
 ##### 7. POST Request Headers
+
+POST request with headers
+
 ```java
 Map<String, String> headers = new HashMap<>();
 headers.put("leopard", "animal");
@@ -96,6 +117,9 @@ APITask.from(this).sendPOST(203, APIClient.API_URL + "/post", "{}", headers, thi
 ```
 
 ##### 9. DigestAuth Success
+
+Simple autentication method with header
+
 ```java
 Map<String, String> headers = new HashMap<>();
 headers.put("Authorization", "Digest username=\"postman\", realm=\"Users\", nonce=\"ni1LiL0O37PRRhofWdCLmwFsnEtH1lew\", uri=\"/digest-auth\", response=\"254679099562cf07df9b6f5d8d15db44\", opaque=\"\"");
@@ -126,11 +150,17 @@ APITask.from(this).sendPOST(206, APIClient.API_URL + "/post", req, null, this);
 ```
 
 ##### 11. POST Empty Body Method
+
+POST method without any parameters
+
 ```java
 APITask.from(this).sendPOST(207, APIClient.API_URL + "/post", null, this);
 ```
 
 ##### 12. Timeout
+
+Custom timeout, default is 1 minute 
+
 ```java
 APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
                     .setTimeout(3000);
@@ -139,6 +169,9 @@ APITask.from(this, clientBuilder).sendGET(301, APIClient.API_URL + "/delay/5", n
 ```
 
 ##### 13. Host Verification
+
+Custom host name verification
+
 ```java
 APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
                     .setHostnameVerifier(new APIClient.ConfigBuilder.HostnameVerifier() {
