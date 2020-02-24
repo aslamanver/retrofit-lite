@@ -2,11 +2,11 @@
 
 Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit
 
-## Initialization
+### Initialization
 
 Once uploaded to JCenter
 
-## Simple Usage
+### Simple Usage
 
 1. GET Request Data
 
