@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,18 +25,26 @@ public class APITask {
     private Retrofit retrofit;
     private APIInterface apiInterface;
 
-    private APITask(Context context) {
-        this.retrofit = APIClient.getClient(context);
+    private APITask(Context context, APIClient.Builder builder) {
+        this.retrofit = APIClient.getClient(context, builder);
         this.apiInterface = retrofit.create(APIInterface.class);
     }
 
     public static APITask from(Context context) {
-        return new APITask(context);
+        return new APITask(context, new APIClient.Builder());
+    }
+
+    public static APITask from(Context context, APIClient.Builder builder) {
+        return new APITask(context, builder);
     }
 
     public void sendGET(int pid, String url, Map<String, String> headers, Listener apiListener) {
         Call call = headers == null ? apiInterface.sendGETRequest(url) : apiInterface.sendGETRequest(url, headers);
         call.enqueue(new CustomCallback(pid, apiListener));
+    }
+
+    public void sendPOST(int pid, String url, Map<String, String> headers, Listener apiListener) {
+        sendPOST(pid, url, "{}", headers, apiListener);
     }
 
     public void sendPOST(int pid, String url, String apiRequest, Map<String, String> headers, Listener apiListener) {
@@ -75,7 +84,7 @@ public class APITask {
 
     public interface Listener {
 
-        void onSuccess(int pid, Map<String, String> headers, String body);
+        void onSuccess(int pid, int status, Map<String, String> headers, String body);
 
         void onFailed(int pid, Exception ex);
     }
@@ -84,23 +93,30 @@ public class APITask {
 
         private Listener apiListener;
         private int pid;
+        private boolean listening = false;
+
+        private APITask.Listener defaultListener = new APITask.Listener() {
+
+            @Override
+            public void onSuccess(int pid, int status, Map<String, String> headers, String body) {
+                APITask.console(pid, status, headers, body);
+            }
+
+            @Override
+            public void onFailed(int pid, Exception ex) {
+                APITask.console(pid, ex);
+            }
+        };
 
         CustomCallback(int pid, Listener apiListener) {
 
             this.pid = pid;
 
-            this.apiListener = apiListener != null ? apiListener : new APITask.Listener() {
+            if (apiListener != null) {
+                listening = true;
+            }
 
-                @Override
-                public void onSuccess(int pid, Map<String, String> headers, String body) {
-                    Log.e(APIClient.TAG, body);
-                }
-
-                @Override
-                public void onFailed(int pid, Exception ex) {
-                    Log.e(APIClient.TAG, ex.toString());
-                }
-            };
+            this.apiListener = apiListener != null ? apiListener : defaultListener;
         }
 
         @Override
@@ -120,9 +136,18 @@ public class APITask {
                     headers.put(header, response.headers().get(header));
                 }
 
-                this.apiListener.onSuccess(pid, headers, body);
+                if (listening) {
+                    this.defaultListener.onSuccess(pid, response.code(), headers, body);
+                }
+
+                this.apiListener.onSuccess(pid, response.code(), headers, body);
 
             } catch (Exception ex) {
+
+                if (listening) {
+                    this.defaultListener.onFailed(pid, ex);
+                }
+
                 this.apiListener.onFailed(pid, ex);
             }
         }
@@ -131,5 +156,21 @@ public class APITask {
         public void onFailure(Call<ResponseBody> call, Throwable t) {
             this.apiListener.onFailed(pid, new Exception(t));
         }
+    }
+
+    private static void console(int pid, int status, Map<String, String> headers, String body) {
+        Log.d(APIClient.TAG, "--------- PID: " + pid + " ---------");
+        Log.d(APIClient.TAG, "Status: " + status);
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            Log.d(APIClient.TAG, "Header: " + entry.getKey() + " => " + entry.getValue());
+        }
+        Log.d(APIClient.TAG, "Body: " + body);
+        Log.d(APIClient.TAG, "-----------------------------");
+    }
+
+    private static void console(int pid, Exception ex) {
+        Log.e(APIClient.TAG, "--------- PID: " + pid + " ---------");
+        Log.e(APIClient.TAG, "Exception: " + ex.toString() != null ? ex.toString() : "NULL");
+        Log.e(APIClient.TAG, "-----------------------------");
     }
 }

@@ -21,31 +21,9 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
 
     Context appContext;
-    APITask apiTask;
 
     @Before
     public void before() {
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        apiTask = APITask.from(appContext);
-    }
-
-    @Test
-    public void test_http_without_callback_and_header() {
-
-        apiTask.sendGET(101, "https://reqres.in/api/users", null, new APITask.Listener() {
-
-            @Override
-            public void onSuccess(int pid, Map<String, String> headers, String body) {
-                // Log.e(APIClient.TAG, body);
-                int l = 0;
-                assertTrue(true);
-            }
-
-            @Override
-            public void onFailed(int pid, Exception ex) {
-                Log.e(APIClient.TAG, ex.toString());
-            }
-        });
-
     }
 }

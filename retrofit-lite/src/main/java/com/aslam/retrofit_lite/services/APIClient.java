@@ -1,7 +1,10 @@
 package com.aslam.retrofit_lite.services;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
+import com.aslam.retrofit_lite.BuildConfig;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -28,36 +31,34 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public class APIClient {
 
-    public static String TAG = "RETFIT";
-    private static String API_URL = "https://reqres.in/api/";
+    public static String TAG = "RFTLITE";
+    public static String API_URL = "https://postman-echo.com";
     private static Retrofit retrofit = null;
 
-    public static Retrofit getClient(Context context) {
+    public static Retrofit getClient(Context context, Builder builder) {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
-                .client(getOkHttpClient(context))
+                .client(getOkHttpClient(context, builder))
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         return retrofit;
     }
 
-    private static OkHttpClient getOkHttpClient(final Context context) {
+    public static OkHttpClient getOkHttpClient(Context context, final Builder builder) {
 
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
                 if (!message.contains("<html lang=\"en\">")) {
-                    Log.e("RET_LOG", message);
+                    Log.e("LOG_" + TAG, message);
                 }
             }
         });
 
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         okHttpClientBuilder.addInterceptor(interceptor);
 
         try {
@@ -85,7 +86,7 @@ public class APIClient {
             okHttpClientBuilder.hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
-                    return true;
+                    return builder.hostnameVerifier.onVerify(hostname, session);
                 }
             });
 
@@ -93,7 +94,7 @@ public class APIClient {
             ex.printStackTrace();
         }
 
-        okHttpClientBuilder.callTimeout(30, TimeUnit.SECONDS);
+        okHttpClientBuilder.callTimeout(builder.TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
 
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
@@ -110,8 +111,33 @@ public class APIClient {
     }
 
     private static void setHeaders(Request.Builder requestBuilder) {
-        requestBuilder
-                .header("Authorization", "auth-value");
+        requestBuilder.header("retrofit-lite-version", BuildConfig.VERSION_NAME);
+    }
+
+    public static class Builder {
+
+        public interface HostnameVerifier {
+            boolean onVerify(String hostname, SSLSession session);
+        }
+
+        int TIMEOUT_MILLIS = 1000 * 60;
+
+        HostnameVerifier hostnameVerifier = new HostnameVerifier() {
+            @Override
+            public boolean onVerify(String hostname, SSLSession session) {
+                return true;
+            }
+        };
+
+        public Builder setTimeout(int millis) {
+            this.TIMEOUT_MILLIS = millis;
+            return this;
+        }
+
+        public Builder setHostnameVerifier(HostnameVerifier hostnameVerifier) {
+            this.hostnameVerifier = hostnameVerifier;
+            return this;
+        }
     }
 }
 
