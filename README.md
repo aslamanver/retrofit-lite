@@ -104,6 +104,20 @@ APITask.from(this).sendGET(205, APIClient.API_URL + "/digest-auth", headers, thi
 ```
 
 ##### 10. POST JSON Text with Object
+
+Serialize the object using `GSON` and implement the `APITask.Request` with the class.
+
+```java
+public class SampleReq implements APITask.Request {
+
+    @Expose
+    String email;
+
+    @Expose
+    String password;
+}
+```
+
 ```java
 SampleReq req = new SampleReq();
 req.email = "google@gmail.com";
