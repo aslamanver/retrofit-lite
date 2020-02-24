@@ -8,8 +8,40 @@ Once uploaded to JCenter
 
 ### Simple Usage
 
-For the testing purpose we used Postman-Echo URL as `APIClient.API_URL = "https://postman-echo.com"`, it can be replaced this url once tested.
+For the testing purpose we used Postman-Echo URL as `APIClient.API_URL = "https://postman-echo.com"`, it can be replaced with your server once tested.
 
+GET method with parameter
+```java
+APITask.from(context).sendGET(101, "https://your-url.com/?anyparam=anything", null, new APITask.Listener() {
+    @Override
+    public void onSuccess(int pid, int status, Map<String, String> headers, String body) {
+
+    }
+
+    @Override
+    public void onFailed(int pid, Exception ex) {
+
+    }
+});
+```
+
+POST method with parameter
+```java
+APITask.from(this).sendPOST(201, "https://your-url.com", "{ \"leopard\" : \"animal\" }", null, new APITask.Listener() {
+    @Override
+    public void onSuccess(int pid, int status, Map<String, String> headers, String body) {
+    
+    }
+
+    @Override
+    public void onFailed(int pid, Exception ex) {
+
+    }
+});
+```
+
+
+### Usage
 
 ##### 1. GET Request Data
 ```java
