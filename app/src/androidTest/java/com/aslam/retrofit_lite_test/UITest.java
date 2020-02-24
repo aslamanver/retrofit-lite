@@ -20,22 +20,22 @@ public class UITest {
     @Rule
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
 
-    @Before
-    public void before() {
-
-        Tester.setMaxWaitTime(1000 * 60);
-    }
-
-    @Test
-    public void test_emv_with_key_entry_sale() {
-
-    }
-
-    @After
-    public void after() {
-
-        Tester.sleep(3000);
-        Tester.resetMaxWaitTime();
-    }
+    // @Before
+    // public void before() {
+    //
+    //     Tester.setMaxWaitTime(1000 * 60);
+    // }
+    //
+    // @Test
+    // public void test_emv_with_key_entry_sale() {
+    //
+    // }
+    //
+    // @After
+    // public void after() {
+    //
+    //     Tester.sleep(3000);
+    //     Tester.resetMaxWaitTime();
+    // }
 
 }
