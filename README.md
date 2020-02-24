@@ -10,7 +10,7 @@ Once uploaded to JCenter
 
 For the testing purpose we used Postman-Echo URL as `APIClient.API_URL = "https://postman-echo.com"`, it can be replaced with your server once tested.
 
-GET method with parameter
+#### GET method with parameter
 ```java
 APITask.from(context).sendGET(101, "https://your-url.com/?anyparam=anything", null, new APITask.Listener() {
     @Override
@@ -25,7 +25,7 @@ APITask.from(context).sendGET(101, "https://your-url.com/?anyparam=anything", nu
 });
 ```
 
-POST method with parameter
+#### POST method with parameter
 ```java
 APITask.from(this).sendPOST(201, "https://your-url.com", "{ \"leopard\" : \"animal\" }", null, new APITask.Listener() {
     @Override
@@ -40,8 +40,16 @@ APITask.from(this).sendPOST(201, "https://your-url.com", "{ \"leopard\" : \"anim
 });
 ```
 
+#### Response callbacks
+```java
+void onSuccess(int pid, int status, Map<String, String> headers, String body);
+void onFailed(int pid, Exception ex);
+```
 
-### Usage
+<hr>
+
+### Advance usage
+Implement the `APITask.Listener` with the activity class or you can directly pass into the method.
 
 ##### 1. GET Request Data
 ```java
