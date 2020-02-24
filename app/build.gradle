@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.aslam.retrofit_lite_test"
+        applicationId "com.aslam.retrofit_lite"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
@@ -28,7 +28,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':retrofit-lite')
+    implementation project(path: ':retrofitlite')
 
     implementation 'com.google.code.gson:gson:2.2.4'
 

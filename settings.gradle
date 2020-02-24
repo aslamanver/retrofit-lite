@@ -1,2 +1,2 @@
-include ':app', ':retrofit-lite'
-rootProject.name='retrofit-lite-test'
+include ':app', ':retrofitlite'
+rootProject.name='retrofit-lite'
