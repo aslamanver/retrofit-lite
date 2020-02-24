@@ -191,4 +191,3 @@ Set the listener to null to ignore callbacks
 ```java
 APITask.from(this).sendGET(500, APIClient.API_URL + "/get", null, null);
 ```
-
