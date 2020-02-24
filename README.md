@@ -1,6 +1,6 @@
 # Retrofit-Lite
 
-Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit
+Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit.
 
 ### Initialization
 
@@ -8,7 +8,7 @@ Once uploaded to JCenter
 
 ### Simple Usage
 
-For the testing purpose we used Postman-Echo URL as `APIClient.API_URL = "https://postman-echo.com"`, it can be replaced with your server once tested.
+For the testing purpose we used Postman-Echo URL as `APIClient.API_URL = "https://postman-echo.com"`, it can be replaced with your server address once tested.
 
 #### GET method with parameter
 ```java
@@ -40,7 +40,10 @@ APITask.from(this).sendPOST(201, "https://your-url.com", "{ \"leopard\" : \"anim
 });
 ```
 
+The object can also be sent in the `sendPOST` as serialized, please refer the section `10. POST JSON Text with Object`
+
 #### Response callbacks
+These methods are called with the process id which is given when initiated and the status code of the response.
 ```java
 void onSuccess(int pid, int status, Map<String, String> headers, String body);
 void onFailed(int pid, Exception ex);
