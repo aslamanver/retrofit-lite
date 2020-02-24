@@ -65,12 +65,12 @@ req.email = "google@gmail.com";
 APITask.from(this).sendPOST(206, APIClient.API_URL + "/post", req, null, this);
 ```
 
-#### 11. POST Empty Body Method
+##### 11. POST Empty Body Method
 ```java
 APITask.from(this).sendPOST(207, APIClient.API_URL + "/post", null, this);
 ```
 
-#### 12. Timeout
+##### 12. Timeout
 ```java
 APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
                     .setTimeout(3000);
@@ -78,7 +78,7 @@ APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
 APITask.from(this, clientBuilder).sendGET(301, APIClient.API_URL + "/delay/5", null, this);
 ```
 
-#### 13. Host Verification
+##### 13. Host Verification
 ```java
 APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
                     .setHostnameVerifier(new APIClient.ConfigBuilder.HostnameVerifier() {
