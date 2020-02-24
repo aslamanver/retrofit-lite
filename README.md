@@ -8,6 +8,9 @@ Once uploaded to JCenter
 
 ### Simple Usage
 
+For the testing purpose we used Postman echo url as `APIClient.API_URL = "https://postman-echo.com"`, you can replace this url once tested.
+
+
 ##### 1. GET Request Data
 ```java
 APITask.from(this).sendGET(101, APIClient.API_URL + "/get?leopard=animal", null, this);
