@@ -8,7 +8,7 @@ Once uploaded to JCenter
 
 ### Simple Usage
 
-For the testing purpose we used Postman echo url as `APIClient.API_URL = "https://postman-echo.com"`, you can replace this url once tested.
+For the testing purpose we used Postman-Echo URL as `APIClient.API_URL = "https://postman-echo.com"`, it can be replaced this url once tested.
 
 
 ##### 1. GET Request Data
