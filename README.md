@@ -184,3 +184,11 @@ APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
 APITask.from(this, clientBuilder).sendGET(302, APIClient.API_URL + "/get", null, this);
 ```
 
+##### 14. No Callback
+
+Set the listener to null to ignore callbacks
+
+```java
+APITask.from(this).sendGET(500, APIClient.API_URL + "/get", null, null);
+```
+
