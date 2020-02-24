@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
                 "206 - POST JSON Text with Object",
                 "207 - POST Empty Body Method",
                 "301 - TIMEOUT",
-                "302 - Host Verification"
+                "302 - Host Verification",
+                "500 - No Callback"
         });
 
         binding.spinnerData.setAdapter(arrayAdapter);
@@ -165,6 +166,11 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
                     });
 
             APITask.from(this, clientBuilder).sendGET(302, APIClient.API_URL + "/get", null, this);
+        }
+        // "500 - No Callback"
+        else if (arrayAdapter.getItem(position).contains("500")) {
+
+            APITask.from(this).sendGET(500, APIClient.API_URL + "/get", null, null);
         }
         // Nothing
         else {
