@@ -9,7 +9,7 @@ Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit
 Add the below dependency into your module level `build.gradle` file
 
 ```gradle
-implementation 'com.aslam:retrofit-lite:1.0.2'
+implementation 'com.aslam:retrofit-lite:1.0.3'
 ```
 
 ### Simple Usage
