@@ -1,8 +1,8 @@
 package com.aslam.retrofit_lite;
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import android.support.test.filters.LargeTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
 import org.junit.Before;
@@ -10,7 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertTrue;
 
 
 @RunWith(AndroidJUnit4.class)
@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class UITest {
 
     @Rule
-    public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
+    public ActivityTestRule<MainActivity> activityScenarioRule = new ActivityTestRule<>(MainActivity.class);
 
     @Before
     public void before() {
@@ -27,7 +27,7 @@ public class UITest {
     }
 
     @Test
-    public void test_samle() {
+    public void test() {
         assertTrue(true);
     }
 

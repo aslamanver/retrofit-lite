@@ -1,17 +1,16 @@
 package com.aslam.retrofit_lite;
 
+import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.ViewAction;
 import android.view.View;
-
-import androidx.test.espresso.NoMatchingViewException;
-import androidx.test.espresso.ViewAction;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class Tester {
 
