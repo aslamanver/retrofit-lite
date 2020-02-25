@@ -1,6 +1,6 @@
 # Retrofit-Lite
 
-[ ![Download](https://api.bintray.com/packages/aslam/android/retrofit-lite/images/download.svg?version=1.0.2) ](https://bintray.com/aslam/android/retrofit-lite/1.0.2/link) [![](https://jitpack.io/v/aslamanver/retrofit-lite.svg)](https://jitpack.io/#aslamanver/retrofit-lite)
+[ ![Download](https://api.bintray.com/packages/aslam/android/retrofit-lite/images/download.svg?version=1.0.2) ](https://bintray.com/aslam/android/retrofit-lite/1.0.2/link) [ ![Download](https://api.bintray.com/packages/aslam/android/retrofit-lite/images/download.svg?version=1.0.2-support) ](https://bintray.com/aslam/android/retrofit-lite/1.0.2-support/link) [![](https://jitpack.io/v/aslamanver/retrofit-lite.svg)](https://jitpack.io/#aslamanver/retrofit-lite) [![Build Status](https://travis-ci.org/aslamanver/retrofit-lite.svg?branch=master)](https://travis-ci.org/aslamanver/retrofit-lite) [![Build Status](https://travis-ci.org/aslamanver/retrofit-lite.svg?branch=support)](https://travis-ci.org/aslamanver/retrofit-lite)
 
 Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit.
 
