@@ -6,7 +6,7 @@ publish {
     repoName = 'android'
     groupId = 'com.aslam'
     artifactId = 'retrofit-lite'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.2-support'
     desc = 'Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit'
     website = 'https://github.com/aslamanver/retrofit-lite'
 }
@@ -17,7 +17,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 102
-        versionName "1.0.2"
+        versionName "1.0.2-support"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
