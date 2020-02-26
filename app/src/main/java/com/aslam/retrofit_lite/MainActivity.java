@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
                 "207 - POST Empty Body Method",
                 "301 - TIMEOUT",
                 "302 - Host Verification",
-                "500 - No Callback"
+                "500 - No Callback",
+                "800 - Sync GET",
+                "801 - Sync POST"
         });
 
         binding.spinnerData.setAdapter(arrayAdapter);
@@ -163,6 +165,50 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
 
             binding.txtLog.setText(arrayAdapter.getItem(position) + "\n" + "Check the logs for response");
             binding.spinnerData.setEnabled(true);
+        }
+        // "800 - Sync GET"
+        else if (arrayAdapter.getItem(position).contains("800")) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    final APITask.SyncResponse syncResponse = APITask.from(getApplicationContext()).sendGETSync(500, APIClient.API_URL + "/get?leopard=animal", null);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (syncResponse.success) {
+                                onSuccess(syncResponse.pid, syncResponse.status, syncResponse.headers, syncResponse.body);
+                            } else {
+                                onFailed(syncResponse.pid, syncResponse.ex);
+                            }
+                        }
+                    });
+                }
+            }).start();
+        }
+        // "801 - Sync POST"
+        else if (arrayAdapter.getItem(position).contains("801")) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    final APITask.SyncResponse syncResponse = APITask.from(getApplicationContext()).sendPOSTSync(201, APIClient.API_URL + "/post", "Leopard is an animal", null);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (syncResponse.success) {
+                                onSuccess(syncResponse.pid, syncResponse.status, syncResponse.headers, syncResponse.body);
+                            } else {
+                                onFailed(syncResponse.pid, syncResponse.ex);
+                            }
+                        }
+                    });
+                }
+            }).start();
         }
         // Nothing
         else {

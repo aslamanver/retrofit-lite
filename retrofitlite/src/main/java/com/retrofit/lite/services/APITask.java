@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +64,36 @@ public class APITask {
         sendPOST(pid, url, new Gson().toJson(apiRequest), headers, apiListener);
     }
 
+    /* Sync Methods */
+
+    public SyncResponse sendGETSync(int pid, String url, Map<String, String> headers) {
+        Call call = headers == null ? apiInterface.sendGETRequest(url) : apiInterface.sendGETRequest(url, headers);
+        return SyncResponse.make(pid, call);
+    }
+
+    public SyncResponse sendPOSTSync(int pid, String url, Map<String, String> headers) {
+        return sendPOSTSync(pid, url, "{}", headers);
+    }
+
+    public SyncResponse sendPOSTSync(int pid, String url, String apiRequest, Map<String, String> headers) {
+
+        if (isValidJSON(apiRequest)) {
+            if (headers == null) {
+                headers = new HashMap<>();
+            }
+            headers.put("Content-Type", "application/json; charset=utf-8");
+        }
+
+        Call call = headers == null ? apiInterface.sendPOSTRequest(url, apiRequest) : apiInterface.sendPOSTRequest(url, headers, apiRequest);
+        return SyncResponse.make(pid, call);
+    }
+
+    public SyncResponse sendPOSTSync(int pid, String url, APITask.Request apiRequest, Map<String, String> headers) {
+        return sendPOSTSync(pid, url, new Gson().toJson(apiRequest), headers);
+    }
+
+    /****/
+
     private boolean isValidJSON(String test) {
         try {
             new JSONObject(test);
@@ -86,6 +117,52 @@ public class APITask {
         void onSuccess(int pid, int status, Map<String, String> headers, String body);
 
         void onFailed(int pid, Exception ex);
+    }
+
+    public static class SyncResponse {
+
+        public boolean success;
+        public int pid;
+        public int status;
+        public Map<String, String> headers;
+        public String body;
+        public Exception ex;
+
+        public static SyncResponse make(int pid, Call call) {
+
+            SyncResponse syncResponse = new SyncResponse();
+
+            try {
+
+                Response<ResponseBody> response = call.execute();
+
+                String body = response.body() == null ? "{}" : response.body().string();
+
+                if (response.body() == null) {
+                    body = response.errorBody() == null ? "{}" : response.errorBody().string();
+                }
+
+                Map<String, String> headers = new HashMap<>();
+
+                for (String header : response.headers().names()) {
+                    headers.put(header, response.headers().get(header));
+                }
+
+                syncResponse.success = true;
+                syncResponse.pid = pid;
+                syncResponse.status = response.code();
+                syncResponse.headers = headers;
+                syncResponse.body = body;
+
+            } catch (Exception ex) {
+
+                syncResponse.success = false;
+                syncResponse.pid = pid;
+                syncResponse.ex = ex;
+            }
+
+            return syncResponse;
+        }
     }
 
     private class CustomCallback implements Callback<ResponseBody> {
