@@ -218,7 +218,13 @@ Sync HTTP requests should be called inside a new thread.
 APITask.SyncResponse syncResponse = APITask.from(getApplicationContext()).sendPOSTSync(201, APIClient.API_URL + "/post", "Leopard is an animal", null);
 ```
 
-The method returns a sync object as `API Task.ASync Response` which contains the HTTP results as below.
+The method returns a sync object as `APITask.SyncResponse syncResponse` which contains the HTTP results as below.
+
+The response object of the Sync HTTP request
+
+```java
+APITask.SyncResponse syncResponse
+```
 
 It returns true if the HTTP request is successful
 
