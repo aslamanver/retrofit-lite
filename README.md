@@ -123,6 +123,16 @@ headers.put("leopard", "animal");
 
 APITask.from(this).sendPOST(203, APIClient.API_URL + "/post", "{}", headers, this);
 ```
+##### 8. Basic Auth
+
+Basic autentication method with header
+
+```java
+Map<String, String> headers = new HashMap<>();
+headers.put("Authorization", "Basic cG9zdG1hbjpwYXNzd29yZA==");
+
+APITask.from(this).sendGET(204, APIClient.API_URL + "/basic-auth", headers, this);
+```
 
 ##### 9. DigestAuth Success
 
@@ -199,3 +209,50 @@ Set the listener to null to ignore callbacks
 ```java
 APITask.from(this).sendGET(500, APIClient.API_URL + "/get", null, null);
 ```
+
+### Synchronous HTTP requests
+
+Sync HTTP requests should be called inside a new thread.
+
+```java
+APITask.SyncResponse syncResponse = APITask.from(getApplicationContext()).sendPOSTSync(201, APIClient.API_URL + "/post", "Leopard is an animal", null);
+```
+
+The method returns a sync object as `API Task.ASync Response` which contains the HTTP results as below.
+
+It returns true if the HTTP request is successful
+
+```java
+syncResponse.success
+```
+
+Process ID 
+
+```java
+syncResponse.pid;
+```
+
+The status code of the HTTP response
+
+```java
+syncResponse.status;
+```
+
+Response headers
+
+```java
+syncResponse.headers;
+```
+
+Body of the HTTP response
+
+```java
+syncResponse.body;
+```
+
+It gives an exception when the success return false
+```java
+syncResponse.ex;
+```
+
+
