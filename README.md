@@ -235,30 +235,30 @@ syncResponse.success
 Process ID 
 
 ```java
-syncResponse.pid;
+syncResponse.pid
 ```
 
 The status code of the HTTP response
 
 ```java
-syncResponse.status;
+syncResponse.status
 ```
 
 Response headers
 
 ```java
-syncResponse.headers;
+syncResponse.headers
 ```
 
 Body of the HTTP response
 
 ```java
-syncResponse.body;
+syncResponse.body
 ```
 
 It gives an exception when the success return false
 ```java
-syncResponse.ex;
+syncResponse.ex
 ```
 
 
