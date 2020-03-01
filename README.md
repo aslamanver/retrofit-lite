@@ -260,5 +260,5 @@ It gives an exception when the success return false
 ```java
 syncResponse.ex
 ```
-
+Refer the example for Sync : https://github.com/aslamanver/retrofit-lite/blob/master/app/src/main/java/com/aslam/retrofit_lite/MainActivity.java#L194
 
