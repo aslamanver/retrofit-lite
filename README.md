@@ -2,7 +2,7 @@
 
 ![https://i.imgur.com/CTeI1yW.png](https://i.imgur.com/mXyMp3c.png)
 
-[ ![Download](https://api.bintray.com/packages/aslam/android/retrofit-lite/images/download.svg?version=1.0.4) ](https://bintray.com/aslam/android/retrofit-lite/1.0.4/link) [![](https://jitpack.io/v/aslamanver/retrofit-lite.svg)](https://jitpack.io/#aslamanver/retrofit-lite) [![Build Status](https://travis-ci.org/aslamanver/retrofit-lite.svg?branch=master)](https://travis-ci.org/aslamanver/retrofit-lite)
+[ ![Download](https://api.bintray.com/packages/aslam/android/retrofit-lite/images/download.svg?version=1.0.5) ](https://bintray.com/aslam/android/retrofit-lite/1.0.5/link) [![](https://jitpack.io/v/aslamanver/retrofit-lite.svg)](https://jitpack.io/#aslamanver/retrofit-lite) [![Build Status](https://travis-ci.org/aslamanver/retrofit-lite.svg?branch=master)](https://travis-ci.org/aslamanver/retrofit-lite)
 
 Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit.
 
@@ -11,7 +11,7 @@ Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit
 Add the below dependency into your module level `build.gradle` file
 
 ```gradle
-implementation 'com.aslam:retrofit-lite:1.0.4'
+implementation 'com.aslam:retrofit-lite:1.0.5'
 ```
 
 ### Simple Usage
