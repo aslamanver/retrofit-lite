@@ -94,6 +94,9 @@ public class APIClient {
         }
 
         okHttpClientBuilder.callTimeout(builder.TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        okHttpClientBuilder.connectTimeout(builder.TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        okHttpClientBuilder.readTimeout(builder.TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
+        okHttpClientBuilder.writeTimeout(builder.TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
 
         okHttpClientBuilder.addInterceptor(new Interceptor() {
             @Override
