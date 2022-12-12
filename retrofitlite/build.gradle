@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
+group = 'com.github.aslamanver'
+version = '2.0.2'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -46,4 +49,18 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.aslamanver'
+                artifactId = 'retrofit-lite'
+                version = '2.0.2'
+            }
+        }
+    }
 }

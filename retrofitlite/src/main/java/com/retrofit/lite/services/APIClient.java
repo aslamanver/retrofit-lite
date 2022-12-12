@@ -3,7 +3,7 @@ package com.retrofit.lite.services;
 import android.content.Context;
 import android.util.Log;
 
-import com.retrofit.lite.BuildConfig;
+
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -132,7 +132,7 @@ public class APIClient {
     }
 
     private static void setHeaders(Request.Builder requestBuilder) {
-        requestBuilder.header("retrofit-lite-version", BuildConfig.VERSION_NAME);
+        requestBuilder.header("retrofit-lite-version", "v2.0.5");
     }
 
     public static class ConfigBuilder {

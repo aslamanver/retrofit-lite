@@ -1,13 +1,11 @@
 package com.aslam.retrofit_lite;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
-
+import androidx.databinding.DataBindingUtil;
 import com.aslam.retrofit_lite.databinding.ActivityMainBinding;
 import com.retrofit.lite.services.APIClient;
 import com.retrofit.lite.services.APITask;

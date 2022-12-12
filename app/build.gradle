@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.aslam.retrofit_lite'
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.aslam.retrofit_lite"
