@@ -10,10 +10,24 @@ Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit
 
 ### Initialization
 
-Add the below dependency into your module level `settings.gradle` or `build.gradle` file
+1. Add the below repository into your project level build.gradle file.
 
 ```gradle
-implementation 'com.aslam:retrofit-lite:2.0.5'
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+2. Add the below dependency into your module level `build.gradle` file.
+
+```gradle
+dependencies {
+    ...
+    implementation 'com.github.aslamanver:retrofit-lite:v2.0.5'
+}
 ```
 
 ### Simple Usage
