@@ -263,9 +263,21 @@ syncResponse.ex
 
 Refer the example for Sync : [Example](https://github.com/aslamanver/retrofit-lite/blob/master/app/src/main/java/com/aslam/retrofit_lite/MainActivity.java#L194)
 
-### Setting custom `okHttpClient` and `sslSocketFactory`
+### Setting `sslSocketFactory`
 
 ```java
 APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
-                    .setSSLSocketFactoryGenerator();
+    .setSSLSocketFactoryGenerator(new APIClient.ConfigBuilder.SSLSocketFactoryGenerator(sslSocketFactory, trustManager));
+```
+
+### Setting custom `okHttpClient`
+
+```java
+APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder()
+        .setOkHttpClientModifier(new APIClient.ConfigBuilder.OkHttpClientModifier() {
+            @Override
+            public void onSet(okhttp3.OkHttpClient.Builder okHttpClientBuilder) {
+                // Modify the okHttpClientBuilder
+            }
+        });
 ```

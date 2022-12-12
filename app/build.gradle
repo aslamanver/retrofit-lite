@@ -39,4 +39,5 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation project(path: ':retrofitlite')
+    // implementation 'com.github.aslamanver:retrofit-lite:v2.0.1'
 }
