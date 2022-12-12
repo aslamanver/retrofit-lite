@@ -2,7 +2,9 @@
 
 ![https://i.imgur.com/CTeI1yW.png](https://i.imgur.com/mXyMp3c.png)
 
-[![](https://jitpack.io/v/aslamanver/retrofit-lite.svg)](https://jitpack.io/#aslamanver/retrofit-lite) [![Build Status](https://travis-ci.org/aslamanver/retrofit-lite.svg?branch=master)](https://travis-ci.org/aslamanver/retrofit-lite)
+[![](https://jitpack.io/v/aslamanver/retrofit-lite.svg)](https://jitpack.io/#aslamanver/retrofit-lite) 
+[![](https://github.com/aslamanver/retrofit-lite/actions/workflows/android.yml/badge.svg)](https://github.com/aslamanver/retrofit-lite/actions)
+[![Build Status](https://travis-ci.org/aslamanver/retrofit-lite.svg?branch=master)](https://travis-ci.org/aslamanver/retrofit-lite)
 
 Retrofit-Lite for Android - Lightweight HTTP client based on OKhttp and Retrofit.
 
