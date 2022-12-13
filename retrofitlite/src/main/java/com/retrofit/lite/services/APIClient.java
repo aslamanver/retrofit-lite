@@ -132,7 +132,7 @@ public class APIClient {
     }
 
     private static void setHeaders(Request.Builder requestBuilder) {
-        requestBuilder.header("retrofit-lite-version", "v2.0.5");
+        requestBuilder.header("retrofit-lite-version", "v2.0.6");
     }
 
     public static class ConfigBuilder {

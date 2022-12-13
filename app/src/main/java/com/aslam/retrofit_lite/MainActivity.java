@@ -248,4 +248,10 @@ public class MainActivity extends AppCompatActivity implements APITask.Listener 
 
         binding.txtLog.setText(binding.txtLog.getText() + res);
     }
+
+    public void test() {
+        APIClient.ConfigBuilder clientBuilder = new APIClient.ConfigBuilder();
+        clientBuilder.setSSLSocketFactoryGenerator(new APIClient.ConfigBuilder.SSLSocketFactoryGenerator(null, null));
+        clientBuilder.setOkHttpClientModifier(null);
+    }
 }

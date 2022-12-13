@@ -2,15 +2,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 group = 'com.github.aslamanver'
-version = '2.0.2'
+version = '2.0.6'
 
 android {
     compileSdkVersion 28
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 205
-        versionName "2.0.5"
+        versionCode 206
+        versionName "2.0.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -63,7 +63,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.aslamanver'
                 artifactId = 'retrofit-lite'
-                version = '2.0.2'
+                version = '2.0.6'
             }
         }
     }
