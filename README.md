@@ -26,7 +26,7 @@ allprojects {
 ```gradle
 dependencies {
     ...
-    implementation 'com.github.aslamanver:retrofit-lite:v2.0.5'
+    implementation 'com.github.aslamanver:retrofit-lite:v2.0.6'
 }
 ```
 
